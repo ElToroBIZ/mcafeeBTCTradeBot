@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@google-cloud/vision": "^0.14.0",
     "axios": "^0.17.1",
+    "binance": "^1.1.2",
+    "node-bittrex-api": "^0.8.1",
     "nodemon": "^1.14.3",
     "poloniex-api-node": "^1.6.5",
     "twit": "^2.2.9"

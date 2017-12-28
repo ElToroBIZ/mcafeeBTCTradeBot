@@ -1,19 +1,11 @@
 const bittrex = require('node-bittrex-api');
 
-/*
-variance : If the price of the coin has risen over 'variance'% then the purchase wont execute. The idea here is to protect users who are
-hosing the bot in a bad place so they dont end up buying with an inflated rate. Example 11 = 11% change. So if the coin has change is less than 11% for the day it will purchase.
-markup : the % over the current price you are willing to pay incase other bots beat you. Example .01 = 1% markup
-btcSpending: the amount of btc you want to spend on given coin
-*/
-
-
 class Bittrex {
-  constructor(variance, markup, btcSpending) {
+  constructor({ API_KEY, SECRET, variance, markup, btcSpending }) {
     this.bittrex = bittrex;
     this.bittrex.options({
-      'apikey' : '',
-      'apisecret' : ''
+      'apikey' : API_KEY,
+      'apisecret' : SECRET
     });
     this.variance = variance; // 11 = 11% change in the day so anything under 11 is allowed
     this.markup = markup; // 0.01 = 1% markup
@@ -37,8 +29,10 @@ class Bittrex {
   getSpecificSummaryAndBuy(currencyPair) {
     let mkt = { market : `BTC-${currencyPair}`};
     this.bittrex.getmarketsummary(mkt, (data, err) => {
-      if (this.allowBuy(low, high)) {
-        let buyPrice = data.result[0].Ask + data.result[0].Ask * this.markup;
+      //console.log(data);
+      let { Low, High, Ask } = data.result[0];
+      if (this.allowBuy(Low, High)) {
+        let buyPrice = Ask + Ask * this.markup;
         this.buy(currencyPair, buyPrice);
       } else {
         console.log(`Buy Terminated :: Too much action`);

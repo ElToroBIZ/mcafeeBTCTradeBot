@@ -1,16 +1,8 @@
 const Poloniex = require('poloniex-api-node');
 
-/*
-  API_KEY     = the api key you recieve from the exchange poloniex;
-  SECRET      = the secret you recieve from the exchange poloniex;
-  buyAmount   = the amount of BTC you want to spend on the coin that was just tweeted about (min 0.000001);
-  markup      = incase another bot gets a request in faster and clears the book, this lets you send a buy with a markup. Reccomended @ should be .01 - .05;
-  resell      = set to either True or False .... True = you want the bot to automatically resell, False = you want to keep it so you can manually dump it
-  sellmarkup  = If resell is set to true, it will resell at "boughtprice * sellmarkup", so setting this as 1.05 would result in a 5% markup
-*/
 
 class polo {
-  constructor(API_KEY, SECRET, buyAmount, markup, resell, sellmarkup = 1) {
+  constructor({ API_KEY, SECRET, buyAmount, markup, resell, sellmarkup }) {
     this.API_KEY    = API_KEY;
     this.SECRET     = SECRET;
     this.buyAmount  = buyAmount;
@@ -57,6 +49,5 @@ class polo {
     .catch(err => console.log(err));
   }
 }
-
 
 module.exports = polo;
