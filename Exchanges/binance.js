@@ -21,7 +21,6 @@ class binance {
   }
 
   checkPriceAndBuy(currencyPair) {
-    console.log('called');
     let queryObj = {
       symbol: `${currencyPair}BTC`,
     }
