@@ -14,7 +14,7 @@ class Bittrex {
 
   allowBuy(low, high) {
     let pctchange = (((high/low) - 1) * 100).toFixed(5);
-    console.log(`PctChange: ${pctchange} :: Variance :: ${this.variance}`);
+    console.log(`PctChange: ${pctchange} :: Variance :: ${this.variance} :: { BITTREX }`);
     return this.variance > pctchange;
   }
 
@@ -35,7 +35,7 @@ class Bittrex {
         let buyPrice = Ask + Ask * this.markup;
         this.buy(currencyPair, buyPrice);
       } else {
-        console.log(`Buy Terminated :: Too much action`);
+        console.log(`Buy Terminated :: Too much action { BITTREX }`);
       }
     });
   }
@@ -61,9 +61,9 @@ class Bittrex {
       Target: 0,                    // used in conjunction with ConditionType
     }, (buy, err) => {
       if (err) {
-        console.log(`ERR in buy :: ${JSON.stringify(err)}`);
+        console.log(`ERR in buy :: ${JSON.stringify(err)} :: { BITTREX }`);
       } else {
-        console.log(`Buy Success :: ${JSON.stringify(buy)}`);
+        console.log(`Buy Success :: ${JSON.stringify(buy)} :: { BITTREX }`);
       }
     });
   }

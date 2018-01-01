@@ -26,13 +26,13 @@ class binance {
     }
     this.exchange.ticker24hr(queryObj)
     .then(result => {
-      console.log('got ticker');
+      console.log('Got Ticker in { BINANCE }');
       let { priceChangePercent, askPrice } = result;
       if (this.variance > priceChangePercent) {
         let buyPrice = askPrice + askPrice * this.markup;
         this.buy(buyPrice, currencyPair);
       } else {
-        console.log('Price already shot up, not purchasing');
+        console.log('Price already shot up, not purchasing { BINANCE }');
       }
     }).catch(err => console.log(err));
   }
@@ -51,8 +51,8 @@ class binance {
       recvWindow: 10000000
     }
     this.exchange.newOrder(buyObj)
-    .then(success => console.log(success))
-    .catch(err => console.log(`ERR in buy ${JSON.stringify(err)}`))
+    .then(success => console.log(`Succes Buy :: ${success} :: { BINANCE }`))
+    .catch(err => console.log(`ERR in buy ${JSON.stringify(err)} :: { BINANCE }`))
   }
 }
 

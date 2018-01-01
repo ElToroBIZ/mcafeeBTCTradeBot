@@ -22,14 +22,14 @@ class yobit {
         var { low, last, sell } = obj[item];
       }
       let pctchange = (((last/low) - 1) * 100).toFixed(5);
-      if (pctchange > this.variance) { console.log('Too much variance not buying'); }
+      if (pctchange > this.variance) { console.log('Too much variance not buying :: { YOBIT }'); }
       else {
         let buyPrice = (sell + sell * this.markup).toFixed(10);
         let amtToPurchase = (this.btcSpending / buyPrice).toFixed(5);
         this.buy(buyPrice, amtToPurchase, currencyPair);
       }
 
-    } else { console.log(`ERR getting price: ${JSON.stringify(err)}`)}
+    } else { console.log(`ERR getting price: ${JSON.stringify(err)} :: { YOBIT }`)}
   }
 
   buy(buyPrice, amtToPurchase, currencyPair) {
@@ -40,8 +40,8 @@ class yobit {
   }
 
   buyResult(err, result) {
-    console.log(`DATA FROM BUY: ${JSON.stringify(err)} :: ${JSON.stringify(result)}`);
+    console.log(`DATA FROM BUY: ${JSON.stringify(err)} :: ${JSON.stringify(result)} :: { YOBIT }`);
   }
 }
 
-module.exports = Yobit;
+module.exports = yobit;

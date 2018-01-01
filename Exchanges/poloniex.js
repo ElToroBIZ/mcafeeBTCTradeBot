@@ -30,7 +30,7 @@ class polo {
     const amount = this.buyAmount / buyprice;
     this.poloniex.buy(currencyPair, buyprice, amount.toFixed(4), false, false, false)
     .then(result => {
-      console.log(`Made Purchase ${JSON.stringify(result)}`);
+      console.log(`Made Purchase ${JSON.stringify(result)} :: { POLO }`);
       if (this.resell) {
         let amountPurchased = 0;
         for (let i = 0; i < result.resultingTrades.length; i++) {
@@ -38,12 +38,12 @@ class polo {
         }
         this.sell(buyprice, currencyPair, amountPurchased);
       }
-    }).catch(err => console.log(err));
+    }).catch(err => console.log(`${err} :: { POLO }`));
   }
 
   sell(sellprice, currencyPair, amount) {
     sellprice = sellprice * this.sellmarkup;
-    console.log(`Selling now :: Sell price: ${sellprice} :: currencyPair: ${currencyPair} :: Amount : ${amount}`);
+    console.log(`Selling now :: Sell price: ${sellprice} :: currencyPair: ${currencyPair} :: Amount : ${amount} :: { POLO }`);
     this.poloniex.sell(currencyPair, sellprice, amount, false, false, false)
     .then(sell => console.log(sell))
     .catch(err => console.log(err));

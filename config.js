@@ -4,7 +4,7 @@ module.exports = {
   usePolo: true,
   useBinance: true,
   useBittrex: true,
-  useYobit: true
+  useYobit: true,
   poloniex: {
     API_KEY: 'a',
     SECRET: 'a',
@@ -35,10 +35,10 @@ module.exports = {
     btcSpending: 0
   },
   twit: {
-    consumer_key: 'd',
-    consumer_secret: 'd',
-    access_token: 'd',
-    access_token_secret: 'd'
+    consumer_key: '',
+    consumer_secret: '',
+    access_token: '-',
+    access_token_secret: ''
   }
 }
 

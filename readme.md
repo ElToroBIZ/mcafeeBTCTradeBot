@@ -45,3 +45,6 @@ Yobit.prototype.addTrade = function addTrade(callback, symbol, type, amount, pri
 
     this.privateRequest('Trade', params, callback)
 }
+
+it should look like this
+![Screenshot](yobitfix.jpg)

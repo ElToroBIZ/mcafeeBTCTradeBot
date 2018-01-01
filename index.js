@@ -50,11 +50,12 @@ stream.on('tweet', (tweet, err) => {
   if (validate(tweet) && tweet.user.id_str === '961445378' && !isIn(tweet.id, IDChecked)) {
     if (tweet.text.match(/https:\/\/t.co\/[^\s]+/)) {
       let image = tweet.entities.media[0].media_url;
+      console.time('imageDetectionTime');
       gImage.textDetection(image)
       .then(result => {
-        console.log(result);
+        console.timeEnd('imageDetectionTime');
         let text = result[0].fullTextAnnotation.text;
-        checkTweet(text.slice(0, 20), tweet.text)
+        checkTweet(text.slice(0, 25), tweet.text)
       }).catch(err => console.log(`Err with google text ${err}`));
     } else {
       console.log('No image found in tweet, ignoring');
@@ -72,9 +73,10 @@ function checkTweet(text, tweet){
     for (var val of names) {
       val = val.toLowerCase();
       if (text.includes(val) && tweet.includes('coin of the week')) {
-        console.log(`${text} :: ${val}`);
         if (!isIn(val, CoinsBought)) {
+          console.log(`buying ${val}`);
           buy(val.toUpperCase());
+          break;
         }
       }
     }
