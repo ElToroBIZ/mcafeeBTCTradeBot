@@ -4,33 +4,41 @@ module.exports = {
   usePolo: true,
   useBinance: true,
   useBittrex: true,
+  useYobit: true
   poloniex: {
-    API_KEY: '',
-    SECRET: '',
+    API_KEY: 'a',
+    SECRET: 'a',
     buyAmount: .008, /* these are my preset values ..these are too be changed */
     markup: .01,
     resell: true,
     sellmarkup: 1.1
   },
   binance: {
-    API_KEY: '',
-    SECRET: '',
+    API_KEY: 'a',
+    SECRET: 'a',
     variance: 10,
     markup: .01,
     btcSpending: .008
   },
   bittrex: {
-    API_KEY: '',
-    SECRET: '',
+    API_KEY: 'a',
+    SECRET: 'a',
     variance: 10,
     markup: .01,
     btcSpending: .008
   },
+  yobit: {
+    API_KEY: 'bb',
+    SECRET: 'dd',
+    variance: 0,
+    markup: 0,
+    btcSpending: 0
+  },
   twit: {
-    consumer_key: '',
-    consumer_secret: '',
-    access_token: '',
-    access_token_secret: ''
+    consumer_key: 'd',
+    consumer_secret: 'd',
+    access_token: 'd',
+    access_token_secret: 'd'
   }
 }
 

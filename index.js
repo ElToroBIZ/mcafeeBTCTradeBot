@@ -6,7 +6,8 @@ const Twit   = require('twit'),
 //Exchanges
 const Binance  = require('./Exchanges/binance'),
       Bittrex  = require('./Exchanges/bittrex'),
-      Poloniex = require('./Exchanges/poloniex');
+      Poloniex = require('./Exchanges/poloniex'),
+      Yobit    = require('./Exchanges/yobit');
 
 process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './googlekeys/googlevision1.json';
 // process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './googlekeys/googleExample.json';
@@ -18,24 +19,31 @@ const safeCheck = true;
 let { poloniex,
       binance,
       bittrex,
+      yobit,
       usePolo,
       useBinance,
       useBittrex,
-      twit        } = config;
+      useYobit,
+      twit
+  } = config;
 
 if (usePolo) {
-    const POLO = new Poloniex(poloniex);
+  var POLO = new Poloniex(poloniex);
 }
 if (useBinance) {
-  const BINANCE = new Binance(binance);
+  var BINANCE = new Binance(binance);
 }
 if (useBittrex) { //see notes in Tests.js
-  const BITTREX = new Bittrex(bittrex);
+  var BITTREX = new Bittrex(bittrex);
+}
+if (useYobit) {
+  var YOBIT = new Yobit(yobit);
 }
 
 const gImage = new vision.ImageAnnotatorClient();
 const T      = new Twit(twit);
 const stream = T.stream('statuses/filter', { follow : '961445378' });
+
 
 stream.on('tweet', (tweet, err) => {
   console.log(tweet);
@@ -94,7 +102,13 @@ function isIn(id, array) {
 }
 
 function validate(twitter_response) {
- let { in_reply_to_status_id, in_reply_to_status_id_str, in_reply_to_user_id, in_reply_to_user_id_str, in_reply_to_screen_name } = twitter_response;
+ let {
+   in_reply_to_status_id,
+   in_reply_to_status_id_str,
+   in_reply_to_user_id,
+   in_reply_to_user_id_str,
+   in_reply_to_screen_name
+ } = twitter_response;
 
  if (!in_reply_to_status_id && !in_reply_to_status_id_str && !in_reply_to_user_id && !in_reply_to_user_id_str && !in_reply_to_screen_name) {
    return true;
@@ -113,5 +127,8 @@ function buy(val) {
   }
   if (useBittrex) { //see notes in Tests.js
     BITTREX.getSpecificSummaryAndBuy(val);
+  }
+  if (useYobit) {
+    YOBIT.getPricenBuy(val);
   }
 }

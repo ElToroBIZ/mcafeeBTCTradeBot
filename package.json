@@ -10,7 +10,8 @@
     "node-bittrex-api": "^0.8.1",
     "nodemon": "^1.14.3",
     "poloniex-api-node": "^1.6.5",
-    "twit": "^2.2.9"
+    "twit": "^2.2.9",
+    "yobit": "0.0.1"
   },
   "devDependencies": {},
   "scripts": {
