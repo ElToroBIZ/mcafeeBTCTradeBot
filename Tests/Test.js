@@ -1,3 +1,5 @@
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = '../googlekeys/googlevision1.json';
+
 const Binance  = require('../Exchanges/binance'),
       Bittrex  = require('../Exchanges/bittrex'),
       Poloniex = require('../Exchanges/poloniex');
@@ -5,8 +7,8 @@ const Binance  = require('../Exchanges/binance'),
       config   = require('../config');
 
 
-
 let { poloniex,
+      poloniexSafeMode,
       binance,
       bittrex,
       yobit,
@@ -16,10 +18,12 @@ let { poloniex,
       useYobit
   } = config;
 
+
+
 if (usePolo) {
   const POLO = new Poloniex(poloniex);
   console.log('Sending Poloniex Buy Request');
-  POLO.checkBalancesandBuy('LTC');
+  poloniexSafeMode ? POLO.chartData('LTC') : POLO.checkBalancesandBuy('LTC');
 }
 
 if (useBinance) { //My connection was too slow to test this, could somone please post feedback(if it works) on github issues
