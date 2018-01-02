@@ -34,8 +34,6 @@ class yobit {
 
   buy(buyPrice, amtToPurchase, currencyPair) {
     currencyPair = `${currencyPair}_btc`;
-    console.log(currencyPair);
-    console.log(amtToPurchase);
     this.publicClient.addTrade(this.buyResult, currencyPair, 'buy', amtToPurchase, buyPrice);
   }
 

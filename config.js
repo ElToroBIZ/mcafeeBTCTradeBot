@@ -2,16 +2,18 @@
 
 module.exports = {
   usePolo: true,
-  useBinance: true,
-  useBittrex: true,
-  useYobit: true,
+  useBinance: false,
+  useBittrex: false,
+  useYobit: false,
+  poloniexSafeMode: true, // Set to true if you want to not buy if price is above variance(set inside poloniex object);
   poloniex: {
-    API_KEY: 'a',
-    SECRET: 'a',
-    buyAmount: .008, /* these are my preset values ..these are too be changed */
-    markup: .01,
+    API_KEY: 'asdf',
+    SECRET: 'asdf',
+    buyAmount: .0008, /* these are my preset values ..these are too be changed */
+    markup: 1.01, //1% markup { NOTE NEW FORMAT ! }
     resell: true,
-    sellmarkup: 1.1
+    sellmarkup: 1.1,
+    variance: 10
   },
   binance: {
     API_KEY: 'a',
@@ -28,11 +30,11 @@ module.exports = {
     btcSpending: .008
   },
   yobit: {
-    API_KEY: 'bb',
-    SECRET: 'dd',
-    variance: 0,
+    API_KEY: 'asdf',
+    SECRET: 'asdf',
+    variance: 100,
     markup: 0,
-    btcSpending: 0
+    btcSpending: .008
   },
   twit: {
     consumer_key: '',

@@ -17,6 +17,7 @@ var CoinsBought = [];   /* Dont Change this value */
 const safeCheck = true;
 
 let { poloniex,
+      poloniexSafeMode,
       binance,
       bittrex,
       yobit,
@@ -122,7 +123,7 @@ function validate(twitter_response) {
 
 function buy(val) {
   if (usePolo) {
-      POLO.checkBalancesandBuy(val);
+    poloniexSafeMode ? POLO.chartData(val) : POLO.checkBalancesandBuy(val);
   }
   if (useBinance) { //also see notes in Tests.js
     BINANCE.checkPriceAndBuy(val);
