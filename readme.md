@@ -32,19 +32,6 @@ Steps to use.
 
 If you are using yobit, YOU MUST MAKE THESE CHANGES.
 
-After installing click on node_modules folder > click on yobit folder > click on index.js go to line 267, remove their addTrade and add this
-Yobit.prototype.addTrade = function addTrade(callback, symbol, type, amount, price)
-{
-    var params = {
-        pair: symbol,
-        type: type
-    }
+After installing click on node_modules folder > click on yobit folder > click on index.js go to line 267, remove their addTrade and make it look like this
 
-    if (amount) params.amount = amount
-    if (price) params.price = price
-
-    this.privateRequest('Trade', params, callback)
-}
-
-it should look like this
 ![Screenshot](yobitfix.jpg)
