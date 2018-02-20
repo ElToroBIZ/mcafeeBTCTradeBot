@@ -41,7 +41,7 @@ class Bittrex {
   }
 
   getOrderBook(currencyPair) {
-    return new Promise((resulve, reject) => {
+    return new Promise((resolve, reject) => {
       let data = { market: `BTC-${currencyPair}`, depth: 3, type: 'sell'};
       this.bittrex.getorderbook(data, (data, err) => {
         err ? reject(err) : resolve(data);
